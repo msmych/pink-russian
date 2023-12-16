@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uk.matvey.pink.app.account.Account;
 import uk.matvey.pink.app.account.AccountRepository;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -19,7 +20,9 @@ public class AccountController {
     }
 
     @GetMapping("/accounts")
-    public Collection<Account> getAccounts() { return accountRepository.findAll();}
+    public Collection<Account> getAccounts() {
+        return accountRepository.findAll();
+    }
 
 
     @GetMapping("/accounts/{id}")
@@ -31,17 +34,19 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public UUID createAccount(@RequestBody AccountController.CreateAccountRequest request) {
         var id = randomUUID();
-        accountRepository.save(new Account(id, request.name, request.login, request.email));
+        final var now = Instant.now();
+        accountRepository.save(new Account(id, request.name, request.login, request.email, now, now));
         return id;
     }
+
     @DeleteMapping("/accounts/{id}")
-    public void deleteAccount(@PathVariable UUID id){
+    public void deleteAccount(@PathVariable UUID id) {
         accountRepository.deleteById(id);
     }
 
     public static class CreateAccountRequest {
 
-        public String name,email,login;
+        public String name, email, login;
 
 
     }

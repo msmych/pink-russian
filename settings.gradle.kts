@@ -1,5 +1,6 @@
-rootProject.name = "pink-russian-server"
+rootProject.name = "pink-russian"
 
 include(
-    "app"
+    "app",
+    "freezer",
 )

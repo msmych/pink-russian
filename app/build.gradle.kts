@@ -14,6 +14,8 @@ dependencies {
 
     runtimeOnly("com.h2database:h2")
 
+    implementation(project(":freezer"))
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
