@@ -1,22 +1,23 @@
 package uk.matvey.pink.app.ingredient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
+import java.time.Instant;
 import java.util.UUID;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties
 public class Ingredient {
 
-    @Id
     public UUID id;
     public String name;
+    public Instant createdAt;
+    public Instant updatedAt;
 
-    public Ingredient(UUID id, String name) {
+    public Ingredient(UUID id, String name, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.name = name;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
     }
 
     public Ingredient() {

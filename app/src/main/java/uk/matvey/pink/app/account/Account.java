@@ -2,17 +2,13 @@ package uk.matvey.pink.app.account;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
 import java.time.Instant;
 import java.util.UUID;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties
 public class Account {
 
-    @Id
     public UUID id;
     public String name;
     public String login;

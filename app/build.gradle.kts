@@ -10,8 +10,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
+    implementation("com.zaxxer:HikariCP:5.1.0")
     runtimeOnly("com.h2database:h2")
 
     implementation(project(":freezer"))

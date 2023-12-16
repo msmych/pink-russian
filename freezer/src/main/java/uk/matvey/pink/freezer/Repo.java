@@ -63,6 +63,18 @@ public class Repo {
         });
     }
 
+    public void delete(String tableName, String condition, QueryParams conditionParams) {
+        withConnection(conn -> {
+            try (final var statement = conn.prepareStatement(String.format("delete from * where %s", condition))) {
+                conditionParams.setValues(statement);
+                statement.executeUpdate();
+                return null;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
     public <T> T withConnection(Function<Connection, T> block) {
         try (var conn = dataSource.getConnection()) {
             return block.apply(conn);
